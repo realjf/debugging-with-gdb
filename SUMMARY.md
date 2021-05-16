@@ -4,11 +4,10 @@
 * [1 GDB会话示例](a-sample-gdb-session.md)
 * 2 进出GDB
   * [进出gdb](getting-in-and-out-of-gdb/getting-in-and-out-gdb.md)
-  * 调用gdb
-    * [调用gdb](getting-in-and-out-of-gdb/invoking-gdb/invoking-gdb.md)
-    * [选择文件](getting-in-and-out-of-gdb/invoking-gdb/choosing-files.md)
-    * [选择模式](getting-in-and-out-of-gdb/invoking-gdb/choosing-modes.md)
-    * [GDB在启动期间会做什么](getting-in-and-out-of-gdb/invoking-gdb/what-gdb-does-during-startup.md)
+  * [调用gdb](getting-in-and-out-of-gdb/invoking-gdb.md)
+    * [选择文件](getting-in-and-out-of-gdb/choosing-files.md)
+    * [选择模式](getting-in-and-out-of-gdb/choosing-modes.md)
+    * [GDB在启动期间会做什么](getting-in-and-out-of-gdb/what-gdb-does-during-startup.md)
   * [退出gdb](getting-in-and-out-of-gdb/quitting-gdb.md)
   * [shell命令](getting-in-and-out-of-gdb/shell-commands.md)
   * [日志输出](getting-in-and-out-of-gdb/logging-output.md)
