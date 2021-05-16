@@ -1,0 +1,987 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>5.1.11“无法插入断点” · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="breakpoint-address-adjusted.html" />
+    
+    
+    <link rel="prev" href="static-probe-points.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../a-sample-gdb-session.html">
+            
+                <a href="../a-sample-gdb-session.html">
+            
+                    
+                    1 GDB会话示例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../getting-in-and-out-of-gdb/getting-in-and-out-gdb.md">
+            
+                <span>
+            
+                    
+                    2 进出GDB
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../getting-in-and-out-of-gdb/invoking-gdb.html">
+            
+                <a href="../getting-in-and-out-of-gdb/invoking-gdb.html">
+            
+                    
+                    调用gdb
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../getting-in-and-out-of-gdb/choosing-files.html">
+            
+                <a href="../getting-in-and-out-of-gdb/choosing-files.html">
+            
+                    
+                    选择文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="../getting-in-and-out-of-gdb/choosing-modes.html">
+            
+                <a href="../getting-in-and-out-of-gdb/choosing-modes.html">
+            
+                    
+                    选择模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.3" data-path="../getting-in-and-out-of-gdb/what-gdb-does-during-startup.html">
+            
+                <a href="../getting-in-and-out-of-gdb/what-gdb-does-during-startup.html">
+            
+                    
+                    GDB在启动期间会做什么
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../getting-in-and-out-of-gdb/quitting-gdb.html">
+            
+                <a href="../getting-in-and-out-of-gdb/quitting-gdb.html">
+            
+                    
+                    退出gdb
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../getting-in-and-out-of-gdb/shell-commands.html">
+            
+                <a href="../getting-in-and-out-of-gdb/shell-commands.html">
+            
+                    
+                    shell命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../getting-in-and-out-of-gdb/logging-output.html">
+            
+                <a href="../getting-in-and-out-of-gdb/logging-output.html">
+            
+                    
+                    日志输出
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../gdb-commands/gdb-commands.html">
+            
+                <a href="../gdb-commands/gdb-commands.html">
+            
+                    
+                    3 gdb命令
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../gdb-commands/command-syntax.html">
+            
+                <a href="../gdb-commands/command-syntax.html">
+            
+                    
+                    3.1命令语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../gdb-commands/command-settings.html">
+            
+                <a href="../gdb-commands/command-settings.html">
+            
+                    
+                    3.2命令设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../gdb-commands/command-completion.html">
+            
+                <a href="../gdb-commands/command-completion.html">
+            
+                    
+                    3.3命令完成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../gdb-commands/command-options.html">
+            
+                <a href="../gdb-commands/command-options.html">
+            
+                    
+                    3.4命令选项
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../gdb-commands/automatically-prepend-default-arguments-to-user-defined-aliases.html">
+            
+                <a href="../gdb-commands/automatically-prepend-default-arguments-to-user-defined-aliases.html">
+            
+                    
+                    3.5自动为用户定义的别名添加默认参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../gdb-commands/getting-help.html">
+            
+                <a href="../gdb-commands/getting-help.html">
+            
+                    
+                    3.6获取帮助
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../running-programs-under-gdb/running-programs-under-gdb.html">
+            
+                <a href="../running-programs-under-gdb/running-programs-under-gdb.html">
+            
+                    
+                    4 在gdb下运行程序
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../running-programs-under-gdb/compiling-for-debugging.html">
+            
+                <a href="../running-programs-under-gdb/compiling-for-debugging.html">
+            
+                    
+                    4.1调试编译
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../running-programs-under-gdb/starting-your-program.html">
+            
+                <a href="../running-programs-under-gdb/starting-your-program.html">
+            
+                    
+                    4.2启动程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../running-programs-under-gdb/your-programs-arguments.html">
+            
+                <a href="../running-programs-under-gdb/your-programs-arguments.html">
+            
+                    
+                    4.3您程序的参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../running-programs-under-gdb/your-programs-environment.html">
+            
+                <a href="../running-programs-under-gdb/your-programs-environment.html">
+            
+                    
+                    4.4您程序的环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../running-programs-under-gdb/your-programs-working-directory.html">
+            
+                <a href="../running-programs-under-gdb/your-programs-working-directory.html">
+            
+                    
+                    4.5您程序的工作目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../running-programs-under-gdb/your-programs-input-and-output.html">
+            
+                <a href="../running-programs-under-gdb/your-programs-input-and-output.html">
+            
+                    
+                    4.6您程序的输入和输出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../running-programs-under-gdb/debugging-an-already-running-process.html">
+            
+                <a href="../running-programs-under-gdb/debugging-an-already-running-process.html">
+            
+                    
+                    4.7调试已运行的进程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="../running-programs-under-gdb/killing-the-child-process.html">
+            
+                <a href="../running-programs-under-gdb/killing-the-child-process.html">
+            
+                    
+                    4.8杀死子进程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../running-programs-under-gdb/debugging-multiple-inferiors-connections-and-programs.html">
+            
+                <a href="../running-programs-under-gdb/debugging-multiple-inferiors-connections-and-programs.html">
+            
+                    
+                    4.9调试多个下级连接和程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="../running-programs-under-gdb/debugging-programs-with-multiple-threads.html">
+            
+                <a href="../running-programs-under-gdb/debugging-programs-with-multiple-threads.html">
+            
+                    
+                    4.10多线程调试程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="../running-programs-under-gdb/debugging-forks.html">
+            
+                <a href="../running-programs-under-gdb/debugging-forks.html">
+            
+                    
+                    4.11调试forks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.12" data-path="../running-programs-under-gdb/setting-a-bookmark-to-return-to-later.html">
+            
+                <a href="../running-programs-under-gdb/setting-a-bookmark-to-return-to-later.html">
+            
+                    
+                    4.12设置书签以返回到更高版本
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.12.1" data-path="../running-programs-under-gdb/a-non-obvious-benefit-of-using-checkpoints.html">
+            
+                <a href="../running-programs-under-gdb/a-non-obvious-benefit-of-using-checkpoints.html">
+            
+                    
+                    4.12.1使用检查点的明显好处
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="stopping-and-continuing.html">
+            
+                <a href="stopping-and-continuing.html">
+            
+                    
+                    5停止并继续
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="breakpoints-watchpoints-catchpoints.html">
+            
+                <a href="breakpoints-watchpoints-catchpoints.html">
+            
+                    
+                    5.1断点，观察点和捕获点
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1.1" data-path="setting-breakpoints.html">
+            
+                <a href="setting-breakpoints.html">
+            
+                    
+                    5.1.1设置断点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.2" data-path="setting-watchpoints.html">
+            
+                <a href="setting-watchpoints.html">
+            
+                    
+                    5.1.2设置观察点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.3" data-path="setting-catchpoints.html">
+            
+                <a href="setting-catchpoints.html">
+            
+                    
+                    5.1.3设置捕捉点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.4" data-path="deleting-breakpoints.html">
+            
+                <a href="deleting-breakpoints.html">
+            
+                    
+                    5.1.4删除断点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.5" data-path="disabling-breakpoints.html">
+            
+                <a href="disabling-breakpoints.html">
+            
+                    
+                    5.1.5禁用断点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.6" data-path="break-conditions.html">
+            
+                <a href="break-conditions.html">
+            
+                    
+                    5.1.6中断条件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.7" data-path="breakpoint-command-lists.html">
+            
+                <a href="breakpoint-command-lists.html">
+            
+                    
+                    5.1.7断点命令列表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.8" data-path="dynamic-printf.html">
+            
+                <a href="dynamic-printf.html">
+            
+                    
+                    5.1.8动态打印
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.9" data-path="how-to-save-breakpoints-to-a-file.html">
+            
+                <a href="how-to-save-breakpoints-to-a-file.html">
+            
+                    
+                    5.1.9如何将断点保存到文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.10" data-path="static-probe-points.html">
+            
+                <a href="static-probe-points.html">
+            
+                    
+                    5.1.10静态探测点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.1.11" data-path="cannot-insert-breakpoints.html">
+            
+                <a href="cannot-insert-breakpoints.html">
+            
+                    
+                    5.1.11“无法插入断点”
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.12" data-path="breakpoint-address-adjusted.html">
+            
+                <a href="breakpoint-address-adjusted.html">
+            
+                    
+                    5.1.12“已调整断点地址...”
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="continuing-and-stepping.html">
+            
+                <a href="continuing-and-stepping.html">
+            
+                    
+                    5.2继续和步进
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="skipping-over-functions-and-files.html">
+            
+                <a href="skipping-over-functions-and-files.html">
+            
+                    
+                    5.3跳过功能和文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="signals.html">
+            
+                <a href="signals.html">
+            
+                    
+                    5.4信号
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="stopping-and-starting-multi-thread-programs.html">
+            
+                <a href="stopping-and-starting-multi-thread-programs.html">
+            
+                    
+                    5.5停止和启动多线程程序
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.5.1" data-path="all-stop-mode.html">
+            
+                <a href="all-stop-mode.html">
+            
+                    
+                    5.5.1全停止模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.2" data-path="non-stop-mode.html">
+            
+                <a href="non-stop-mode.html">
+            
+                    
+                    5.5.2非停止模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.3" data-path="background-execution.html">
+            
+                <a href="background-execution.html">
+            
+                    
+                    5.5.3后台执行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.4" data-path="thread-specific-breakpoints.html">
+            
+                <a href="thread-specific-breakpoints.html">
+            
+                    
+                    5.5.4特定于线程的断点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.5" data-path="interrupted-system-calls.html">
+            
+                <a href="interrupted-system-calls.html">
+            
+                    
+                    5.5.5中断的系统调用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5.6" data-path="observer-mode.html">
+            
+                <a href="observer-mode.html">
+            
+                    
+                    5.5.6观察者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >5.1.11“无法插入断点”</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="static-probe-points.html" class="navigation navigation-prev " aria-label="Previous page: 5.1.10静态探测点">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="breakpoint-address-adjusted.html" class="navigation navigation-next " aria-label="Next page: 5.1.12“已调整断点地址...”">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"5.1.11“无法插入断点”","level":"1.6.1.11","depth":3,"next":{"title":"5.1.12“已调整断点地址...”","level":"1.6.1.12","depth":3,"path":"stopping-and-continuing/breakpoint-address-adjusted.md","ref":"stopping-and-continuing/breakpoint-address-adjusted.md","articles":[]},"previous":{"title":"5.1.10静态探测点","level":"1.6.1.10","depth":3,"path":"stopping-and-continuing/static-probe-points.md","ref":"stopping-and-continuing/static-probe-points.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters"],"pluginsConfig":{"expandable-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"stopping-and-continuing/cannot-insert-breakpoints.md","mtime":"2021-05-16T06:29:43.726Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-16T06:56:30.245Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
