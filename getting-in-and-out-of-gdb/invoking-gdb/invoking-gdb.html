@@ -1,0 +1,725 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>调用gdb · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="choosing-files.html" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../a-sample-gdb-session.html">
+            
+                <a href="../../a-sample-gdb-session.html">
+            
+                    
+                    1 GDB会话示例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    2 进出GDB
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../getting-in-and-out-gdb.md">
+            
+                <span>
+            
+                    
+                    进出gdb
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" >
+            
+                <span>
+            
+                    
+                    调用gdb
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.3.2.1" data-path="invoking-gdb.html">
+            
+                <a href="invoking-gdb.html">
+            
+                    
+                    调用gdb
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.2" data-path="choosing-files.html">
+            
+                <a href="choosing-files.html">
+            
+                    
+                    选择文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.3" data-path="choosing-modes.html">
+            
+                <a href="choosing-modes.html">
+            
+                    
+                    选择模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.4" data-path="what-gdb-does-during-startup.html">
+            
+                <a href="what-gdb-does-during-startup.html">
+            
+                    
+                    GDB在启动期间会做什么
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../quitting-gdb.html">
+            
+                <a href="../quitting-gdb.html">
+            
+                    
+                    退出gdb
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../shell-commands.html">
+            
+                <a href="../shell-commands.html">
+            
+                    
+                    shell命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../logging-output.html">
+            
+                <a href="../logging-output.html">
+            
+                    
+                    日志输出
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    3 gdb命令
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../gdb-commands/gdb-commands.html">
+            
+                <a href="../../gdb-commands/gdb-commands.html">
+            
+                    
+                    gdb命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../gdb-commands/command-syntax.html">
+            
+                <a href="../../gdb-commands/command-syntax.html">
+            
+                    
+                    命令语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../gdb-commands/command-settings.html">
+            
+                <a href="../../gdb-commands/command-settings.html">
+            
+                    
+                    命令设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../gdb-commands/command-completion.html">
+            
+                <a href="../../gdb-commands/command-completion.html">
+            
+                    
+                    命令完成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../../gdb-commands/command-options.html">
+            
+                <a href="../../gdb-commands/command-options.html">
+            
+                    
+                    命令选项
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../../gdb-commands/automatically-prepend-default-arguments-to-user-defined-aliases.html">
+            
+                <a href="../../gdb-commands/automatically-prepend-default-arguments-to-user-defined-aliases.html">
+            
+                    
+                    自动为用户定义的别名添加默认参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../../gdb-commands/getting-help.html">
+            
+                <a href="../../gdb-commands/getting-help.html">
+            
+                    
+                    获取帮助
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    4 在gdb下运行程序
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../../running-programs-under-gdb.md">
+            
+                <span>
+            
+                    
+                    在gdb下运行程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../running-programs-under-gdb/compiling-for-debugging.html">
+            
+                <a href="../../running-programs-under-gdb/compiling-for-debugging.html">
+            
+                    
+                    4.1调试编译
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../../running-programs-under-gdb/starting-your-program.html">
+            
+                <a href="../../running-programs-under-gdb/starting-your-program.html">
+            
+                    
+                    4.2启动程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../../running-programs-under-gdb/your-programs-arguments.html">
+            
+                <a href="../../running-programs-under-gdb/your-programs-arguments.html">
+            
+                    
+                    4.3您程序的参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../../running-programs-under-gdb/your-programs-environment.html">
+            
+                <a href="../../running-programs-under-gdb/your-programs-environment.html">
+            
+                    
+                    4.4您程序的环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../../running-programs-under-gdb/your-programs-working-directory.html">
+            
+                <a href="../../running-programs-under-gdb/your-programs-working-directory.html">
+            
+                    
+                    4.5您程序的工作目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../../running-programs-under-gdb/your-programs-input-and-output.html">
+            
+                <a href="../../running-programs-under-gdb/your-programs-input-and-output.html">
+            
+                    
+                    4.6您程序的输入和输出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="../../running-programs-under-gdb/debugging-an-already-running-process.html">
+            
+                <a href="../../running-programs-under-gdb/debugging-an-already-running-process.html">
+            
+                    
+                    4.7调试已运行的进程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../../running-programs-under-gdb/killing-the-child-process.html">
+            
+                <a href="../../running-programs-under-gdb/killing-the-child-process.html">
+            
+                    
+                    4.8杀死子进程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="../../running-programs-under-gdb/debugging-multiple-inferiors-connections-and-programs.html">
+            
+                <a href="../../running-programs-under-gdb/debugging-multiple-inferiors-connections-and-programs.html">
+            
+                    
+                    4.9调试多个下级连接和程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="../../running-programs-under-gdb/debugging-programs-with-multiple-threads.html">
+            
+                <a href="../../running-programs-under-gdb/debugging-programs-with-multiple-threads.html">
+            
+                    
+                    4.10多线程调试程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.12" data-path="../../running-programs-under-gdb/debugging-forks.html">
+            
+                <a href="../../running-programs-under-gdb/debugging-forks.html">
+            
+                    
+                    4.11调试forks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.13" data-path="../../running-programs-under-gdb/setting-a-bookmark-to-return-to-later.html">
+            
+                <a href="../../running-programs-under-gdb/setting-a-bookmark-to-return-to-later.html">
+            
+                    
+                    4.12设置书签以返回到更高版本
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.13.1" data-path="../../running-programs-under-gdb/a-non-obvious-benefit-of-using-checkpoints.html">
+            
+                <a href="../../running-programs-under-gdb/a-non-obvious-benefit-of-using-checkpoints.html">
+            
+                    
+                    4.12.1使用检查点的明显好处
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >调用gdb</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x8C03;&#x7528;gdb">&#x8C03;&#x7528;gdb</h2>
+<p>&#x901A;&#x8FC7;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;gdb&#x6765;&#x8C03;&#x7528;GDB&#x3002; &#x4E00;&#x65E6;&#x542F;&#x52A8;&#xFF0C;GDB&#x5C06;&#x4ECE;&#x7EC8;&#x7AEF;&#x8BFB;&#x53D6;&#x547D;&#x4EE4;&#xFF0C;&#x76F4;&#x5230;&#x60A8;&#x544A;&#x8BC9;&#x5B83;&#x9000;&#x51FA;&#x3002;</p>
+<p>&#x60A8;&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5404;&#x79CD;&#x53C2;&#x6570;&#x548C;&#x9009;&#x9879;&#x8FD0;&#x884C;gdb&#xFF0C;&#x4EE5;&#x5728;&#x4E00;&#x5F00;&#x59CB;&#x5C31;&#x6307;&#x5B9A;&#x66F4;&#x591A;&#x7684;&#x8C03;&#x8BD5;&#x73AF;&#x5883;&#x3002;</p>
+<p>&#x6B64;&#x5904;&#x63CF;&#x8FF0;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;&#x65E8;&#x5728;&#x6DB5;&#x76D6;&#x5404;&#x79CD;&#x60C5;&#x51B5;&#x3002; &#x5728;&#x67D0;&#x4E9B;&#x73AF;&#x5883;&#x4E2D;&#xFF0C;&#x5176;&#x4E2D;&#x67D0;&#x4E9B;&#x9009;&#x9879;&#x53EF;&#x80FD;&#x5B9E;&#x9645;&#x4E0A;&#x4E0D;&#x53EF;&#x7528;&#x3002;</p>
+<p>&#x542F;&#x52A8;GDB&#x7684;&#x6700;&#x5E38;&#x7528;&#x65B9;&#x6CD5;&#x662F;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x53EF;&#x6267;&#x884C;&#x7A0B;&#x5E8F;&#xFF1A;</p>
+<pre><code>gdb program
+</code></pre><p>&#x60A8;&#x8FD8;&#x53EF;&#x4EE5;&#x4ECE;&#x53EF;&#x6267;&#x884C;&#x7A0B;&#x5E8F;&#x548C;&#x6307;&#x5B9A;&#x7684;&#x6838;&#x5FC3;&#x6587;&#x4EF6;&#x5F00;&#x59CB;&#xFF1A;</p>
+<pre><code>gdb program core
+</code></pre><p>&#x5982;&#x679C;&#x8981;&#x8C03;&#x8BD5;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x8FDB;&#x7A0B;&#xFF0C;&#x53EF;&#x4EE5;&#x6539;&#x4E3A;&#x5C06;&#x8FDB;&#x7A0B;ID&#x6307;&#x5B9A;&#x4E3A;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x6216;&#x4F7F;&#x7528;&#x9009;&#x9879;-p&#xFF1A;</p>
+<pre><code>gdb program 1234
+gdb -p 1234
+</code></pre><p>&#x4F1A;&#x5C06;GDB&#x9644;&#x52A0;&#x5230;&#x8FDB;&#x7A0B;1234&#x3002;&#x4F7F;&#x7528;&#x9009;&#x9879;-p&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x7701;&#x7565;&#x7A0B;&#x5E8F;&#x6587;&#x4EF6;&#x540D;&#x3002;</p>
+<p>&#x5229;&#x7528;&#x7B2C;&#x4E8C;&#x4E2A;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x76F8;&#x5F53;&#x5B8C;&#x6574;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x3002; &#x5F53;&#x60A8;&#x5C06;GDB&#x7528;&#x4F5C;&#x8FDE;&#x63A5;&#x5230;&#x88F8;&#x677F;&#x4E0A;&#x7684;&#x8FDC;&#x7A0B;&#x8C03;&#x8BD5;&#x5668;&#x65F6;&#xFF0C;&#x53EF;&#x80FD;&#x6CA1;&#x6709;&#x201C;&#x8FDB;&#x7A0B;&#x201D;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x5E76;&#x4E14;&#x901A;&#x5E38;&#x6CA1;&#x6709;&#x529E;&#x6CD5;&#x83B7;&#x5F97;&#x6838;&#x5FC3;&#x8F6C;&#x50A8;&#x3002; &#x5982;&#x679C;GDB&#x65E0;&#x6CD5;&#x9644;&#x52A0;&#x6216;&#x8BFB;&#x53D6;&#x6838;&#x5FC3;&#x8F6C;&#x50A8;&#xFF0C;&#x5B83;&#x5C06;&#x8B66;&#x544A;&#x60A8;&#x3002;</p>
+<p>&#x60A8;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x4F7F;gdb&#x4F7F;&#x7528;--args&#x5C06;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x540E;&#x7684;&#x6240;&#x6709;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7ED9;&#x4E0B;&#x7EA7;&#x3002; &#x6B64;&#x9009;&#x9879;&#x505C;&#x6B62;&#x9009;&#x9879;&#x5904;&#x7406;&#x3002;</p>
+<pre><code>gdb --args gcc -O2 -c foo.c
+</code></pre><p>&#x8FD9;&#x5C06;&#x5BFC;&#x81F4;gdb&#x8C03;&#x8BD5;gcc&#xFF0C;&#x5E76;&#x5C06;gcc&#x7684;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#xFF08;&#x8BF7;&#x53C2;&#x9605;&#x53C2;&#x6570;&#xFF09;&#x8BBE;&#x7F6E;&#x4E3A;-O2 -cfoo.c&#x3002;</p>
+<p>&#x60A8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6307;&#x5B9A;--silent&#xFF08;&#x6216;-q /-quiet&#xFF09;&#x6765;&#x8FD0;&#x884C;gdb&#xFF0C;&#x800C;&#x65E0;&#x9700;&#x6253;&#x5370;&#x7528;&#x4E8E;&#x63CF;&#x8FF0;GDB&#x975E;&#x4FDD;&#x4FEE;&#x7684;&#x524D;&#x7AEF;&#x6750;&#x6599;&#x3002;</p>
+<pre><code>gdb --silent
+</code></pre><p>&#x60A8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;&#x8FDB;&#x4E00;&#x6B65;&#x63A7;&#x5236;GDB&#x7684;&#x542F;&#x52A8;&#x65B9;&#x5F0F;&#x3002; GDB&#x672C;&#x8EAB;&#x53EF;&#x4EE5;&#x63D0;&#x9192;&#x60A8;&#x53EF;&#x7528;&#x7684;&#x9009;&#x9879;&#x3002;</p>
+<pre><code>gdb -help
+</code></pre><p>&#x663E;&#x793A;&#x6240;&#x6709;&#x53EF;&#x7528;&#x9009;&#x9879;&#x5E76;&#x7B80;&#x8981;&#x63CF;&#x8FF0;&#x5B83;&#x4EEC;&#x7684;&#x7528;&#x6CD5;&#xFF08;&#x201C; gdb -h&#x201D;&#x662F;&#x8F83;&#x77ED;&#x7684;&#x7B49;&#x6548;&#x9879;&#xFF09;&#x3002;</p>
+<p>&#x60A8;&#x63D0;&#x4F9B;&#x7684;&#x6240;&#x6709;&#x9009;&#x9879;&#x548C;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x5C06;&#x6309;&#x987A;&#x5E8F;&#x5904;&#x7406;&#x3002;&#x4F7F;&#x7528;&#x201C; -x&#x201D;&#x9009;&#x9879;&#x65F6;&#xFF0C;&#x987A;&#x5E8F;&#x4F1A;&#x6709;&#x6240;&#x4E0D;&#x540C;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="choosing-files.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 选择文件">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"调用gdb","level":"1.3.2.1","depth":3,"next":{"title":"选择文件","level":"1.3.2.2","depth":3,"path":"getting-in-and-out-of-gdb/invoking-gdb/choosing-files.md","ref":"getting-in-and-out-of-gdb/invoking-gdb/choosing-files.md","articles":[]},"previous":{"title":"调用gdb","level":"1.3.2","depth":2,"ref":"","articles":[{"title":"调用gdb","level":"1.3.2.1","depth":3,"path":"getting-in-and-out-of-gdb/invoking-gdb/invoking-gdb.md","ref":"getting-in-and-out-of-gdb/invoking-gdb/invoking-gdb.md","articles":[]},{"title":"选择文件","level":"1.3.2.2","depth":3,"path":"getting-in-and-out-of-gdb/invoking-gdb/choosing-files.md","ref":"getting-in-and-out-of-gdb/invoking-gdb/choosing-files.md","articles":[]},{"title":"选择模式","level":"1.3.2.3","depth":3,"path":"getting-in-and-out-of-gdb/invoking-gdb/choosing-modes.md","ref":"getting-in-and-out-of-gdb/invoking-gdb/choosing-modes.md","articles":[]},{"title":"GDB在启动期间会做什么","level":"1.3.2.4","depth":3,"path":"getting-in-and-out-of-gdb/invoking-gdb/what-gdb-does-during-startup.md","ref":"getting-in-and-out-of-gdb/invoking-gdb/what-gdb-does-during-startup.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters"],"pluginsConfig":{"expandable-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"getting-in-and-out-of-gdb/invoking-gdb/invoking-gdb.md","mtime":"2021-05-16T00:43:31.827Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-16T01:21:41.542Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
