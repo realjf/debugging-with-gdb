@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>1 GDB会话示例 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -61,8 +61,8 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="a-sample-gdb-session.html" />
     
+    <link rel="prev" href="./" />
     
 
     </head>
@@ -91,7 +91,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -104,7 +104,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="a-sample-gdb-session.html">
+        <li class="chapter active" data-level="1.2" data-path="a-sample-gdb-session.html">
             
                 <a href="a-sample-gdb-session.html">
             
@@ -606,7 +606,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >1 GDB会话示例</a>
     </h1>
 </div>
 
@@ -621,9 +621,129 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="debugging-with-gdb">debugging-with-gdb</h1>
-<p>the book is about debugging with gdb</p>
-<p>gdb&#x8C03;&#x8BD5;</p>
+                                <h2 id="1-&#x4E00;&#x4E2A;gdb&#x4F1A;&#x8BDD;&#x793A;&#x4F8B;">1 &#x4E00;&#x4E2A;gdb&#x4F1A;&#x8BDD;&#x793A;&#x4F8B;</h2>
+<p>&#x60A8;&#x53EF;&#x4EE5;&#x5728;&#x95F2;&#x6687;&#x65F6;&#x4F7F;&#x7528;&#x672C;&#x624B;&#x518C;&#x6765;&#x9605;&#x8BFB;&#x6709;&#x5173;GDB&#x7684;&#x5168;&#x90E8;&#x4FE1;&#x606F;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x53EA;&#x6709;&#x5C11;&#x6570;&#x51E0;&#x4E2A;&#x547D;&#x4EE4;&#x8DB3;&#x4EE5;&#x5F00;&#x59CB;&#x4F7F;&#x7528;&#x8C03;&#x8BD5;&#x5668;&#x3002;&#x672C;&#x7AE0;&#x8BF4;&#x660E;&#x4E86;&#x8FD9;&#x4E9B;&#x547D;&#x4EE4;&#x3002;</p>
+<p>GNU m4&#xFF08;&#x901A;&#x7528;&#x5B8F;&#x5904;&#x7406;&#x5668;&#xFF09;&#x7684;&#x521D;&#x6B65;&#x7248;&#x672C;&#x4E4B;&#x4E00;&#x663E;&#x793A;&#x4EE5;&#x4E0B;&#x9519;&#x8BEF;&#xFF1A;&#x6709;&#x65F6;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x4ECE;&#x9ED8;&#x8BA4;&#x503C;&#x66F4;&#x6539;&#x5176;&#x5F15;&#x53F7;&#x5B57;&#x7B26;&#x4E32;&#x65F6;&#xFF0C;&#x7528;&#x4E8E;&#x6355;&#x83B7;&#x53E6;&#x4E00;&#x4E2A;&#x5B8F;&#x5B9A;&#x4E49;&#x4E2D;&#x7684;&#x547D;&#x4EE4;&#x7684;&#x547D;&#x4EE4;&#x5C06;&#x505C;&#x6B62;&#x5DE5;&#x4F5C;&#x3002; &#x5728;&#x63A5;&#x4E0B;&#x6765;&#x7684;m4&#x7B80;&#x77ED;&#x4F1A;&#x8BDD;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x5B8F;foo&#xFF0C;&#x5B83;&#x6269;&#x5C55;&#x4E3A;0000&#xFF1B; &#x7136;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;m4&#x5185;&#x7F6E;&#x7684;defn&#x5C06;bar&#x5B9A;&#x4E49;&#x4E3A;&#x540C;&#x4E00;&#x5BF9;&#x8C61;&#x3002; &#x4F46;&#x662F;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x5C06;&#x6253;&#x5F00;&#x5F15;&#x53F7;&#x5B57;&#x7B26;&#x4E32;&#x66F4;&#x6539;&#x4E3A;<quote>&#x5E76;&#x5C06;&#x5173;&#x95ED;&#x5F15;&#x53F7;&#x5B57;&#x7B26;&#x4E32;&#x66F4;&#x6539;&#x4E3A;<unquote>&#x65F6;&#xFF0C;&#x76F8;&#x540C;&#x7684;&#x8FC7;&#x7A0B;&#x65E0;&#x6CD5;&#x5B9A;&#x4E49;&#x65B0;&#x7684;&#x540C;&#x4E49;&#x8BCD;baz&#xFF1A;</unquote></quote></p>
+<pre><code>$ cd gnu/m4
+$ ./m4
+define(foo,0000)
+
+foo
+0000
+define(bar,defn(&#x2018;foo&#x2019;))
+
+bar
+0000
+changequote(&lt;QUOTE&gt;,&lt;UNQUOTE&gt;)
+
+define(baz,defn(&lt;QUOTE&gt;foo&lt;UNQUOTE&gt;))
+baz
+Ctrl-d
+m4: End of input: 0: fatal error: EOF in string
+</code></pre><p>&#x8BA9;&#x6211;&#x4EEC;&#x4F7F;&#x7528;GDB&#x5C1D;&#x8BD5;&#x770B;&#x770B;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x3002;</p>
+<pre><code>$ gdb m4
+GDB is free software and you are welcome to distribute copies
+ of it under certain conditions; type &quot;show copying&quot; to see
+ the conditions.
+There is absolutely no warranty for GDB; type &quot;show warranty&quot;
+ for details.
+
+GDB 10.2.90.20210515-git, Copyright 1999 Free Software Foundation, Inc...
+(gdb)
+</code></pre><p>GDB&#x4EC5;&#x8BFB;&#x53D6;&#x8DB3;&#x591F;&#x7684;&#x7B26;&#x53F7;&#x6570;&#x636E;&#xFF0C;&#x4EE5;&#x5728;&#x9700;&#x8981;&#x65F6;&#x77E5;&#x9053;&#x5728;&#x54EA;&#x91CC;&#x53EF;&#x4EE5;&#x627E;&#x5230;&#x5176;&#x4F59;&#x7684;&#x6570;&#x636E;&#x3002;&#x7ED3;&#x679C;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x63D0;&#x793A;&#x5F88;&#x5FEB;&#x51FA;&#x73B0;&#x3002;&#x73B0;&#x5728;&#xFF0C;&#x6211;&#x4EEC;&#x544A;&#x8BC9;GDB&#x4F7F;&#x7528;&#x6BD4;&#x901A;&#x5E38;&#x66F4;&#x7A84;&#x7684;&#x663E;&#x793A;&#x5BBD;&#x5EA6;&#xFF0C;&#x4EE5;&#x4FBF;&#x4F7F;&#x793A;&#x4F8B;&#x9002;&#x5408;&#x672C;&#x624B;&#x518C;&#x3002;</p>
+<pre><code>(gdb) set width 70
+</code></pre><p>&#x6211;&#x4EEC;&#x9700;&#x8981;&#x67E5;&#x770B;m4&#x5185;&#x7F6E;&#x7684;changequote&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x3002;&#x770B;&#x4E86;&#x6E90;&#x4EE3;&#x7801;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x77E5;&#x9053;&#x76F8;&#x5173;&#x7684;&#x5B50;&#x4F8B;&#x7A0B;&#x662F;m4_changequote&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x5728;&#x5176;&#x4E2D;&#x4F7F;&#x7528;GDB break&#x547D;&#x4EE4;&#x8BBE;&#x7F6E;&#x4E86;&#x4E00;&#x4E2A;&#x65AD;&#x70B9;&#x3002;</p>
+<pre><code>(gdb) break m4_changequote
+Breakpoint 1 at 0x62f4: file builtin.c, line 879.
+</code></pre><p>&#x4F7F;&#x7528;run&#x547D;&#x4EE4;&#xFF0C;&#x6211;&#x4EEC;&#x5728;GDB&#x7684;&#x63A7;&#x5236;&#x4E0B;&#x542F;&#x52A8;m4&#xFF1B;&#x53EA;&#x8981;&#x63A7;&#x4EF6;&#x672A;&#x5230;&#x8FBE;m4_changequote&#x5B50;&#x4F8B;&#x7A0B;&#xFF0C;&#x8BE5;&#x7A0B;&#x5E8F;&#x5C06;&#x7167;&#x5E38;&#x8FD0;&#x884C;&#xFF1A;</p>
+<pre><code>(gdb) run
+Starting program: /work/Editorial/gdb/gnu/m4/m4
+define(foo,0000)
+
+foo
+0000
+</code></pre><p>&#x4E3A;&#x4E86;&#x89E6;&#x53D1;&#x65AD;&#x70B9;&#xFF0C;&#x6211;&#x4EEC;&#x8C03;&#x7528;changequote&#x3002; GDB&#x6682;&#x505C;m4&#x7684;&#x6267;&#x884C;&#xFF0C;&#x663E;&#x793A;&#x6709;&#x5173;&#x5B83;&#x505C;&#x6B62;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x4FE1;&#x606F;&#x3002;</p>
+<pre><code>changequote(&lt;QUOTE&gt;,&lt;UNQUOTE&gt;)
+
+Breakpoint 1, m4_changequote (argc=3, argv=0x33c70)
+    at builtin.c:879
+879         if (bad_argc(TOKEN_DATA_TEXT(argv[0]),argc,1,3))
+</code></pre><p>&#x73B0;&#x5728;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x547D;&#x4EE4;n&#xFF08;next&#xFF09;&#x5C06;&#x6267;&#x884C;&#x63A8;&#x8FDB;&#x5230;&#x5F53;&#x524D;&#x51FD;&#x6570;&#x7684;&#x4E0B;&#x4E00;&#x884C;&#x3002;</p>
+<pre><code>(gdb) n
+882         set_quotes((argc &gt;= 2) ? TOKEN_DATA_TEXT(argv[1])\
+ : nil,
+</code></pre><p>set_quotes&#x770B;&#x8D77;&#x6765;&#x50CF;&#x4E00;&#x4E2A;&#x5F88;&#x6709;&#x524D;&#x9014;&#x7684;&#x5B50;&#x4F8B;&#x7A0B;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F7F;&#x7528;&#x547D;&#x4EE4;s&#xFF08;step&#xFF09;&#x800C;&#x4E0D;&#x662F;&#x4E0B;&#x4E00;&#x6B65;&#x8FDB;&#x5165;&#x5B83;&#x3002;&#x6B65;&#x9AA4;&#x8F6C;&#x5230;&#x8981;&#x5728;&#x4EFB;&#x4F55;&#x5B50;&#x4F8B;&#x7A0B;&#x4E2D;&#x6267;&#x884C;&#x7684;&#x4E0B;&#x4E00;&#x884C;&#xFF0C;&#x56E0;&#x6B64;&#x5B83;&#x8FDB;&#x5165;set_quotes&#x3002;</p>
+<pre><code>(gdb) s
+set_quotes (lq=0x34c78 &quot;&lt;QUOTE&gt;&quot;, rq=0x34c88 &quot;&lt;UNQUOTE&gt;&quot;)
+    at input.c:530
+530         if (lquote != def_lquote)
+</code></pre><p>&#x663E;&#x793A;m4&#x73B0;&#x5728;&#x88AB;&#x6302;&#x8D77;&#x7684;&#x5B50;&#x4F8B;&#x7A0B;&#xFF08;&#x53CA;&#x5176;&#x53C2;&#x6570;&#xFF09;&#x7684;&#x663E;&#x793A;&#x79F0;&#x4E3A;&#x5806;&#x6808;&#x5E27;&#x663E;&#x793A;&#x3002; &#x5B83;&#x663E;&#x793A;&#x4E86;&#x5806;&#x6808;&#x7684;&#x6458;&#x8981;&#x3002; &#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;backtrace&#x547D;&#x4EE4;&#xFF08;&#x4E5F;&#x53EF;&#x4EE5;&#x5C06;&#x5176;&#x62FC;&#x5199;&#x4E3A;bt&#xFF09;&#x6765;&#x67E5;&#x770B;&#x6211;&#x4EEC;&#x5728;&#x6574;&#x4E2A;&#x5806;&#x6808;&#x4E2D;&#x7684;&#x4F4D;&#x7F6E;&#xFF1A;backtrace&#x547D;&#x4EE4;&#x663E;&#x793A;&#x6BCF;&#x4E2A;&#x6D3B;&#x52A8;&#x5B50;&#x4F8B;&#x7A0B;&#x7684;&#x5806;&#x6808;&#x5E27;&#x3002;</p>
+<pre><code>(gdb) bt
+#0  set_quotes (lq=0x34c78 &quot;&lt;QUOTE&gt;&quot;, rq=0x34c88 &quot;&lt;UNQUOTE&gt;&quot;)
+    at input.c:530
+#1  0x6344 in m4_changequote (argc=3, argv=0x33c70)
+    at builtin.c:882
+#2  0x8174 in expand_macro (sym=0x33320) at macro.c:242
+#3  0x7a88 in expand_token (obs=0x0, t=209696, td=0xf7fffa30)
+    at macro.c:71
+#4  0x79dc in expand_input () at macro.c:40
+#5  0x2930 in main (argc=0, argv=0xf7fffb20) at m4.c:195
+</code></pre><p>&#x6211;&#x4EEC;&#x518D;&#x7ECF;&#x8FC7;&#x51E0;&#x884C;&#xFF0C;&#x770B;&#x770B;&#x4F1A;&#x53D1;&#x751F;&#x4EC0;&#x4E48;&#x3002;&#x524D;&#x4E24;&#x6B21;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x201C; s&#x201D;&#xFF1B;&#x63A5;&#x4E0B;&#x6765;&#x7684;&#x4E24;&#x6B21;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;n&#x907F;&#x514D;&#x9677;&#x5165;xstrdup&#x5B50;&#x4F8B;&#x7A0B;&#x4E2D;</p>
+<pre><code>(gdb) s
+0x3b5c  532         if (rquote != def_rquote)
+(gdb) s
+0x3b80  535         lquote = (lq == nil || *lq == &apos;\0&apos;) ?  \
+def_lquote : xstrdup(lq);
+(gdb) n
+536         rquote = (rq == nil || *rq == &apos;\0&apos;) ? def_rquote\
+ : xstrdup(rq);
+(gdb) n
+538         len_lquote = strlen(rquote);
+</code></pre><p>&#x663E;&#x793A;&#x7684;&#x6700;&#x540E;&#x4E00;&#x884C;&#x770B;&#x8D77;&#x6765;&#x6709;&#x4E9B;&#x5947;&#x602A;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x68C0;&#x67E5;&#x53D8;&#x91CF;lquote&#x548C;rquote&#xFF0C;&#x770B;&#x770B;&#x5B83;&#x4EEC;&#x662F;&#x5426;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x6211;&#x4EEC;&#x6307;&#x5B9A;&#x7684;&#x65B0;&#x7684;&#x5DE6;&#x5F15;&#x53F7;&#x548C;&#x53F3;&#x5F15;&#x53F7;&#x3002;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x547D;&#x4EE4;p&#xFF08;print&#xFF09;&#x67E5;&#x770B;&#x5B83;&#x4EEC;&#x7684;&#x503C;&#x3002;</p>
+<pre><code>(gdb) p lquote
+$1 = 0x35d40 &quot;&lt;QUOTE&gt;&quot;
+(gdb) p rquote
+$2 = 0x35d50 &quot;&lt;UNQUOTE&gt;&quot;
+</code></pre><p>lquote&#x548C;rquote&#x786E;&#x5B9E;&#x662F;&#x65B0;&#x7684;&#x5DE6;&#x53F3;&#x5F15;&#x53F7;&#x3002;&#x4E3A;&#x4E86;&#x67E5;&#x770B;&#x67D0;&#x4E9B;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;l&#xFF08;list&#xFF09;&#x547D;&#x4EE4;&#x5728;&#x5F53;&#x524D;&#x884C;&#x5468;&#x56F4;&#x663E;&#x793A;&#x5341;&#x884C;&#x6E90;&#x4EE3;&#x7801;&#x3002;</p>
+<pre><code>(gdb) l
+533             xfree(rquote);
+534
+535         lquote = (lq == nil || *lq == &apos;\0&apos;) ? def_lquote\
+ : xstrdup (lq);
+536         rquote = (rq == nil || *rq == &apos;\0&apos;) ? def_rquote\
+ : xstrdup (rq);
+537
+538         len_lquote = strlen(rquote);
+539         len_rquote = strlen(lquote);
+540     }
+541
+542     void
+</code></pre><p>&#x8BA9;&#x6211;&#x4EEC;&#x8D8A;&#x8FC7;&#x8BBE;&#x7F6E;len_lquote&#x548C;len_rquote&#x7684;&#x4E24;&#x884C;&#xFF0C;&#x7136;&#x540E;&#x68C0;&#x67E5;&#x8FD9;&#x4E9B;&#x53D8;&#x91CF;&#x7684;&#x503C;</p>
+<pre><code>(gdb) n
+539         len_rquote = strlen(lquote);
+(gdb) n
+540     }
+(gdb) p len_lquote
+$3 = 9
+(gdb) p len_rquote
+$4 = 7
+</code></pre><p>&#x5047;&#x8BBE;len_lquote&#x548C;len_rquote&#x5206;&#x522B;&#x662F;lquote&#x548C;rquote&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x90A3;&#x80AF;&#x5B9A;&#x770B;&#x8D77;&#x6765;&#x662F;&#x9519;&#x8BEF;&#x7684;&#x3002; &#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;p&#x547D;&#x4EE4;&#x5C06;&#x5B83;&#x4EEC;&#x8BBE;&#x7F6E;&#x4E3A;&#x66F4;&#x597D;&#x7684;&#x503C;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x53EF;&#x4EE5;&#x6253;&#x5370;&#x4EFB;&#x4F55;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x503C;&#xFF0C;&#x5E76;&#x4E14;&#x8BE5;&#x8868;&#x8FBE;&#x5F0F;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x5B50;&#x4F8B;&#x7A0B;&#x8C03;&#x7528;&#x548C;&#x8D4B;&#x503C;&#x3002;</p>
+<pre><code>(gdb) p len_lquote=strlen(lquote)
+$5 = 7
+(gdb) p len_rquote=strlen(rquote)
+$6 = 9
+</code></pre><p>&#x8FD9;&#x8DB3;&#x4EE5;&#x89E3;&#x51B3;&#x5728;m4&#x5185;&#x7F6E;defn&#x4E2D;&#x4F7F;&#x7528;&#x65B0;&#x5F15;&#x53F7;&#x7684;&#x95EE;&#x9898;&#x5417;&#xFF1F;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8BA9;m4&#x7EE7;&#x7EED;&#x6267;&#x884C;c&#xFF08;continue&#xFF09;&#x547D;&#x4EE4;&#xFF0C;&#x7136;&#x540E;&#x5C1D;&#x8BD5;&#x6700;&#x521D;&#x5F15;&#x8D77;&#x9EBB;&#x70E6;&#x7684;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code>(gdb) c
+Continuing.
+
+define(baz,defn(&lt;QUOTE&gt;foo&lt;UNQUOTE&gt;))
+
+baz
+0000
+</code></pre><p>&#x6210;&#x529F;&#xFF01;&#x73B0;&#x5728;&#xFF0C;&#x65B0;&#x62A5;&#x4EF7;&#x4E0E;&#x9ED8;&#x8BA4;&#x62A5;&#x4EF7;&#x4E00;&#x6837;&#x6709;&#x6548;&#x3002;&#x95EE;&#x9898;&#x4F3C;&#x4E4E;&#x53EA;&#x662F;&#x4E24;&#x79CD;&#x5B9A;&#x4E49;&#x9519;&#x8BEF;&#x957F;&#x5EA6;&#x7684;&#x9519;&#x522B;&#x5B57;&#x3002;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x7ED9;&#x5B83;&#x4E00;&#x4E2A;EOF&#x4F5C;&#x4E3A;&#x8F93;&#x5165;&#x6765;&#x5141;&#x8BB8;m4&#x9000;&#x51FA;&#xFF1A;</p>
+<pre><code>Ctrl-d
+Program exited normally.
+</code></pre><p>&#x6D88;&#x606F;&#x201C;&#x7A0B;&#x5E8F;&#x6B63;&#x5E38;&#x9000;&#x51FA;&#x3002;&#x201D;&#x6765;&#x81EA;GDB&#xFF1B;&#x5B83;&#x6307;&#x793A;m4&#x5DF2;&#x5B8C;&#x6210;&#x6267;&#x884C;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;GDB quit&#x547D;&#x4EE4;&#x7ED3;&#x675F;GDB&#x4F1A;&#x8BDD;&#x3002;</p>
 
                                 
                                 </section>
@@ -651,10 +771,10 @@
 
             
                 
-                
-                <a href="a-sample-gdb-session.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 1 GDB会话示例">
-                    <i class="fa fa-angle-right"></i>
+                <a href="./" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
                 </a>
+                
                 
             
         
@@ -663,7 +783,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"1 GDB会话示例","level":"1.2","depth":1,"path":"a-sample-gdb-session.md","ref":"a-sample-gdb-session.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters"],"pluginsConfig":{"expandable-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2021-05-15T12:36:00.112Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-16T01:21:41.542Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"1 GDB会话示例","level":"1.2","depth":1,"next":{"title":"2 进出GDB","level":"1.3","depth":1,"ref":"","articles":[{"title":"进出gdb","level":"1.3.1","depth":2,"path":"getting-in-and-out-of-gdb/getting-in-and-out-gdb.md","ref":"getting-in-and-out-of-gdb/getting-in-and-out-gdb.md","articles":[]},{"title":"调用gdb","level":"1.3.2","depth":2,"ref":"","articles":[{"title":"调用gdb","level":"1.3.2.1","depth":3,"path":"getting-in-and-out-of-gdb/invoking-gdb/invoking-gdb.md","ref":"getting-in-and-out-of-gdb/invoking-gdb/invoking-gdb.md","articles":[]},{"title":"选择文件","level":"1.3.2.2","depth":3,"path":"getting-in-and-out-of-gdb/invoking-gdb/choosing-files.md","ref":"getting-in-and-out-of-gdb/invoking-gdb/choosing-files.md","articles":[]},{"title":"选择模式","level":"1.3.2.3","depth":3,"path":"getting-in-and-out-of-gdb/invoking-gdb/choosing-modes.md","ref":"getting-in-and-out-of-gdb/invoking-gdb/choosing-modes.md","articles":[]},{"title":"GDB在启动期间会做什么","level":"1.3.2.4","depth":3,"path":"getting-in-and-out-of-gdb/invoking-gdb/what-gdb-does-during-startup.md","ref":"getting-in-and-out-of-gdb/invoking-gdb/what-gdb-does-during-startup.md","articles":[]}]},{"title":"退出gdb","level":"1.3.3","depth":2,"path":"getting-in-and-out-of-gdb/quitting-gdb.md","ref":"getting-in-and-out-of-gdb/quitting-gdb.md","articles":[]},{"title":"shell命令","level":"1.3.4","depth":2,"path":"getting-in-and-out-of-gdb/shell-commands.md","ref":"getting-in-and-out-of-gdb/shell-commands.md","articles":[]},{"title":"日志输出","level":"1.3.5","depth":2,"path":"getting-in-and-out-of-gdb/logging-output.md","ref":"getting-in-and-out-of-gdb/logging-output.md","articles":[]}]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["expandable-chapters"],"pluginsConfig":{"expandable-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"a-sample-gdb-session.md","mtime":"2021-05-15T13:00:32.699Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-16T01:21:41.542Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
