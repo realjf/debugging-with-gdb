@@ -1,8 +1,11 @@
 # Summary
 
 * [Introduction](README.md)
+
 * [1 GDB会话示例](a-sample-gdb-session.md)
+
 * [2 进出GDB](getting-in-and-out-of-gdb/getting-in-and-out-gdb.md)
+
   * [调用gdb](getting-in-and-out-of-gdb/invoking-gdb.md)
     * [选择文件](getting-in-and-out-of-gdb/choosing-files.md)
     * [选择模式](getting-in-and-out-of-gdb/choosing-modes.md)
@@ -10,14 +13,18 @@
   * [退出gdb](getting-in-and-out-of-gdb/quitting-gdb.md)
   * [shell命令](getting-in-and-out-of-gdb/shell-commands.md)
   * [日志输出](getting-in-and-out-of-gdb/logging-output.md)
+
 * [3 gdb命令](gdb-commands/gdb-commands.md)
+
   * [3.1命令语法](gdb-commands/command-syntax.md)
   * [3.2命令设置](gdb-commands/command-settings.md)
   * [3.3命令完成](gdb-commands/command-completion.md)
   * [3.4命令选项](gdb-commands/command-options.md)
   * [3.5自动为用户定义的别名添加默认参数](gdb-commands/automatically-prepend-default-arguments-to-user-defined-aliases.md)
   * [3.6获取帮助](gdb-commands/getting-help.md)
+
 * [4 在gdb下运行程序](running-programs-under-gdb/running-programs-under-gdb.md)
+
   * [4.1调试编译](running-programs-under-gdb/compiling-for-debugging.md)
   * [4.2启动程序](running-programs-under-gdb/starting-your-program.md)
   * [4.3您程序的参数](running-programs-under-gdb/your-programs-arguments.md)
@@ -31,7 +38,9 @@
   * [4.11调试forks](running-programs-under-gdb/debugging-forks.md)
   * [4.12设置书签以返回到更高版本](running-programs-under-gdb/setting-a-bookmark-to-return-to-later.md)
     * [4.12.1使用检查点的明显好处](running-programs-under-gdb/a-non-obvious-benefit-of-using-checkpoints.md)
+
 * [5停止并继续](stopping-and-continuing/stopping-and-continuing.md)
+
   * [5.1断点，观察点和捕获点](stopping-and-continuing/breakpoints-watchpoints-catchpoints.md)
     * [5.1.1设置断点](stopping-and-continuing/setting-breakpoints.md)
     * [5.1.2设置观察点](stopping-and-continuing/setting-watchpoints.md)
